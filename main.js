@@ -70,7 +70,7 @@ function get_data(data) {
 		child.appendChild(text);
 		list.appendChild(child);
 		child = document.createElement("td");
-		text = document.createTextNode(cf_id);
+		text = document.createTextNode(get_cf_rating(cf_id));
 		child.appendChild(text);
 		list.appendChild(child);
 		child = document.createElement("td");
@@ -105,4 +105,16 @@ function get_data(data) {
 function get_err(err) {
 	console.log("Error!");
 	console.log(err);
+}
+
+function get_cf_rating(handle) {
+	var url = "http://codeforces.com/api/user.info?handles="+handle;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", url, false);
+	xhr.send();
+	
+	var data = JSON.parse(xhr.response);
+	
+	return data.result[0].rating;
 }
