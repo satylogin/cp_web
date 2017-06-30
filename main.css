@@ -1,0 +1,40 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+
+.navbar {
+	border: solid black 2px;
+	border-radius: 0px;
+}
+
+.profile-pic img {
+
+}
+
+.side-bar {
+	/*background-color: lightgrey;*/
+	padding: 10px;
+	/*border: dashed lightgrey 0.5px;*/
+}
+
+.about {
+	padding: 20px;
+	font-size: 1.2em;
+	line-height: 2em;
+}
+
+.footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #000;
+	text-align: center;
+	color: darkgray;
+}
