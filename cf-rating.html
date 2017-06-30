@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Store and retreive data from local storage.</h2>
+
+<p id="demo2"></p>
+<input id="srch"/>
+<button onclick="funk()">Search</button>
+<p id="demo"></p>
+
+<script>
+
+
+
+function funk() {
+  var handle = document.getElementById("srch").value;
+  console.log(handle);
+  var url = "http://codeforces.com/api/user.info?handles="+handle;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, false);
+  xhr.send();
+  console.log(xhr.response);
+  var data = JSON.parse(xhr.response);
+  var dt = new Date(data.result[0].lastOnlineTimeSeconds * 1000);
+  var ans = "Rating of " + data.result[0].firstName + " is " + data.result[0].rating + " was last seen on cf at " + dt.toDateString();
+  document.getElementById("demo").innerHTML = ans;
+}
+</script>
+
+</body>
+</html>
