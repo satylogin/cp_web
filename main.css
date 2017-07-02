@@ -5,6 +5,7 @@
 
 body {
 	background-color: #F5F5F5;
+	min-height: 500px;
 }
 
 .navbar {
@@ -29,7 +30,6 @@ body {
 }
 
 .footer {
-	position: absolute;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -37,4 +37,8 @@ body {
 	background-color: #000;
 	text-align: center;
 	color: darkgray;
+}
+
+#fill_detail, #redirect {
+	display: none;
 }
