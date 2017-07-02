@@ -267,6 +267,7 @@ function submit_details() {
 	console.log("in submit details", "users/" + user_name);
 	console.log(user_rating);
 	
+	if (user_rating == undefined) user_rating = 1500;
 	var data = {
 		name: name,
 		cf_id: cf_id,
