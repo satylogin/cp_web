@@ -264,6 +264,7 @@ function submit_details() {
 	var cf_id = document.forms["user_details"]["user_details_cf_id"].value;
 	
 	var ref = database.ref("users/" + user_name);
+	console.log("in submit details", "users/" + user_name);
 	
 	var data = {
 		name: name,
