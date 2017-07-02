@@ -265,6 +265,7 @@ function submit_details() {
 	
 	var ref = database.ref("users/" + user_name);
 	console.log("in submit details", "users/" + user_name);
+	console.log(user_rating);
 	
 	var data = {
 		name: name,
