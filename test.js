@@ -270,6 +270,8 @@ function submit_details() {
 	
 	var ref = database.ref("users/" + user_name);
 	
+	if (user_rating == undefined) user_rating = 1500;
+	
 	var data = {
 		name: name,
 		cf_id: cf_id,
