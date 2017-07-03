@@ -26,7 +26,7 @@
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.2.1/firebase-ui-auth.css" />
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-	<script type = "text/javascript" src = "test.js"></script>
+	<script type = "text/javascript" src = "index.js"></script>
 </head>
 	
 <body>
@@ -37,6 +37,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 				<li><a href="users.html"><span class="glyphicon glyphicon-user"></span> users</a></li>
+				<li><a href="blogs.html"><span class="glyphicon glyphicon-file"></span> post solution</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> <span id = "logged_state" > Register request </span> </a></li>
@@ -45,7 +46,26 @@
 	</nav>
 	
 	<div class = "container-fluid" style = "min-height: 500px;">
-	
+			<!-- <div class = "col-md-offset-10 col-md-4" style="margin-top:20px; margin-bottom:20px;">
+				<button class = "mdl-button mdl-js-button mdl-button--raised" type = "button" id = "previous">
+				Previous </button>
+				<button class = "mdl-button mdl-js-button mdl-button--raised" type = "button" id = "next">
+				Next </button>
+			</div> -->
+		<div class = "container-fluid">
+			<table class = "table table-striped">
+				<thead>
+					<tr>
+						<th> Problem Link </th>
+						<th> Explaination </th>
+						<th> Solution </th>
+					</tr>
+				</thead>
+				<tbody id = "solution_list">
+					
+				</tbody>
+			</table>
+		</div>
 	</div>
 	
 	<footer class="footer container-fluid bg-4 text-center">

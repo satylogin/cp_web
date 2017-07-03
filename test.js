@@ -38,7 +38,7 @@ function setup () {
 	firebase.auth().onAuthStateChanged(function(user) {
 		
 		if (user) {
-			//console.log(firebase.auth().currentUser);
+			//console.log("user data", user);
 			not_allow_login();
 			get_user_data(user);
 			fill_user_data();
@@ -66,6 +66,11 @@ function sign_up() {
 	var email = document.forms["sign"]["email"].value;
 	var password = document.forms["sign"]["password"].value;
 	
+	if (email.search("@iiita.ac.in") == -1) {
+		alert("Enter the college id");
+		return;
+	}
+
 	// firebase readymade function for signup
 	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(err) {
 		
@@ -158,15 +163,15 @@ function update_email() {
 }
 
 function send_verification_mail() {
-	/*
 	var user = firebase.auth().currentUser;
 
 	user.sendEmailVerification().then(function() {
 	  // Email sent.
+	  	alert("Email Sent. Check you inbox");
 	}, function(error) {
 	  // An error happened.
+	  	alert("Ops! Some error happened." + error.message);
 	});
-	*/
 }
 
 function reset_password() {
@@ -264,10 +269,7 @@ function submit_details() {
 	var cf_id = document.forms["user_details"]["user_details_cf_id"].value;
 	
 	var ref = database.ref("users/" + user_name);
-	console.log("in submit details", "users/" + user_name);
-	console.log(user_rating);
 	
-	if (user_rating == undefined) user_rating = 1500;
 	var data = {
 		name: name,
 		cf_id: cf_id,
@@ -285,6 +287,7 @@ function allow_login() {
 		document.getElementById("sign_in_button").disabled = false;
 		document.getElementById("sign_up_button").disabled = false;
 		document.getElementById("sign_out_button").disabled = true;
+		document.getElementById("send_verification_mail").disabled = true;
 		document.getElementById("user_details").style.display = "none";
 
 	} catch (err) {
@@ -300,6 +303,7 @@ function not_allow_login() {
 		document.getElementById("sign_in_button").disabled = true;
 		document.getElementById("sign_up_button").disabled = true;
 		document.getElementById("sign_out_button").disabled = false;
+		document.getElementById("send_verification_mail").disabled = false;
 		document.getElementById("user_details").style.display = "block";
 	} catch (err) {
 		
@@ -318,6 +322,7 @@ function add_event_listners() {
 		document.getElementById('sign_in_button').addEventListener('click', sign_in, false);
 		document.getElementById('sign_out_button').addEventListener('click', sign_out, false);
 		document.getElementById('submit_details_button').addEventListener('click', submit_details, false);
+		document.getElementById('send_verification_mail').addEventListener('click', send_verification_mail, false);
 	} catch (err) {
 		
 	}

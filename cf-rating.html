@@ -26,6 +26,22 @@ function funk() {
 	var ans = "Rating of " + data.result[0].firstName + " is " + data.result[0].rating + " was last seen on cf at " + dt.toDateString();
 	document.getElementById("demo").innerHTML = ans;
 }
+
+function fun(handle) {
+	var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            myObj = JSON.parse(this.responseText);
+            document.getElementById("demo").innerHTML = myObj.result[0].lastName;
+            for (x in myObj.result[0]) {
+                console.log(x + " " + myObj.result[0][x]);
+            }
+        }
+    };
+    xmlhttp.open("GET", "http://codeforces.com/api/user.info?handles="+handle, true);
+    xmlhttp.send();
+}
+
 </script>
 
 </body>
