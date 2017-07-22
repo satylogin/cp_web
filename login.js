@@ -28,28 +28,24 @@ function setup () {
 	// get a reference to the database
 	database = firebase.database();
 
-//	var ref = database.ref("users");
-//	ref = ref.child("satylogin");
-//	var data = {
-//		cf_id: "satylogin"
-//	}
-//	ref.push(data);
+	// var ref = database.ref("users");
+	// ref.remove(function(err) {
+	// 	alert(err);
+	// });
 	
 	firebase.auth().onAuthStateChanged(function(user) {
 		
 		if (user) {
-			//console.log("user data", user);
 			not_allow_login();
 			get_user_data(user);
 			fill_user_data();
 			
 			try {
-				document.getElementById("logged_state").innerHTML = user_name;
+				document.getElementById("logged_state").innerHTML = user.email;
 			} catch (err) {
 				
 			}
 		} else {
-			//console.log(firebase.auth().currentUser);
 			allow_login();
 		}
 	});
@@ -247,14 +243,14 @@ function get_data(data) {
 	var user = data.val();
 	
 	var cf_id = user.cf_id;
+	var tc_id = user.tc_id;
 	var name = user.name;
 	user_rating = user.rating;
-
-	if (user_rating == undefined) user_rating = 1500;
 
 	try {
 		document.getElementById("user_details_name").value = name;
 		document.getElementById("user_details_cf_id").value = cf_id;
+		document.getElementById("user_details_tc_id").value = tc_id;
 	} catch (err) {
 		
 	}
@@ -267,6 +263,7 @@ function get_err(err) {
 function submit_details() {
 	var name = document.forms["user_details"]["user_details_name"].value;
 	var cf_id = document.forms["user_details"]["user_details_cf_id"].value;
+	var tc_id = document.forms["user_details"]["user_details_tc_id"].value;
 	
 	var ref = database.ref("users/" + user_name);
 	
@@ -275,6 +272,7 @@ function submit_details() {
 	var data = {
 		name: name,
 		cf_id: cf_id,
+		tc_id: tc_id,
 		rating: user_rating
 	}
 	
@@ -327,75 +325,5 @@ function add_event_listners() {
 		document.getElementById('send_verification_mail').addEventListener('click', send_verification_mail, false);
 	} catch (err) {
 		
-	}
-}
-
-/*
- * This function is used to get the codeforces rating of an user
- * using the cf api. The agrument if cf handle. Return value is 
- * rating.
- */
-function get_cf_rating(handle) {
-	var url = "http://codeforces.com/api/user.info?handles="+handle;
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", url, false);
-	xhr.send();
-	
-	var data = JSON.parse(xhr.response);
-	
-	return data.result[0].rating;
-}
-
-function retrive() { 
-	
-	// get a reference to users node from data base and
-	// call the data in increasing order y their rating
-	var ref = firebase.database().ref("users");
-	
-	// switch on a reference to get the data
-	// get_data = function to get data and make table
-	// get_err = in case of failure display message on
-	// 	     console
-	ref.on('value', get_data_table, get_err);
-}
-
-function get_data_table(data) {
-	
-	// get the users from the object
-	document.getElementById("user_list").innerHTML = "";
-	var users = data.val();
-	
-	// make an array of keys to loop through
-	var keys = Object.keys(users);
-	
-	// get a reference to the table (leaderboard)
-	var table = document.getElementById("user_list");
-	
-	// loop through all keys
-	for (var i = 0; i < keys.length; ++i) {
-		// get required data using key of a
-		// data node.
-		var user = users[keys[i]].name;
-		var cf_id = users[keys[i]].cf_id;
-		var cc_id = users[keys[i]].cc_id;
-		var he_id = users[keys[i]].he_id;
-		var hr_id = users[keys[i]].hr_id;
-		var at_id = users[keys[i]].at_id;
-		var cs_id = users[keys[i]].cs_id;
-		var rating = users[keys[i]].rating;
-		
-		// create a new row at top of table
-		var row = table.insertRow(0);
-		
-		// insert data into cells 
-		row.insertCell(0).innerHTML = user;
-		row.insertCell(1).innerHTML = get_cf_rating(cf_id);
-		row.insertCell(2).innerHTML = cc_id;
-		row.insertCell(3).innerHTML = he_id;
-		row.insertCell(4).innerHTML = hr_id;
-		row.insertCell(5).innerHTML = at_id;
-		row.insertCell(6).innerHTML = cs_id;
-		row.insertCell(7).innerHTML = rating;
 	}
 }

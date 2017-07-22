@@ -1,9 +1,8 @@
-<!-- User Profile Page -->
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
-    	<title>CP WEB</title>
+	<title>CP WEB</title>
 
 	<meta charset="utf-8">
 
@@ -27,9 +26,9 @@
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.2.1/firebase-ui-auth.css" />
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-	<script type = "text/javascript" src = "users.js"></script>
+	<script type = "text/javascript" src = "rating_update.js"></script>
 </head>
-
+	
 <body>
 	<!-- Navigation bar for page -->
 	<nav class="navbar navbar-inverse">
@@ -39,31 +38,21 @@
 				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 				<li><a href="users.html"><span class="glyphicon glyphicon-user"></span> users</a></li>
 				<li><a href="blogs.html"><span class="glyphicon glyphicon-file"></span> post solution</a></li>
+				<li><a href="rating_update.html"><span class="glyphicon glyphicon-euro"></span> rating update </a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> <span id = "logged_state" > Register request </span> </a></li>
 			</ul>
 		</div>
 	</nav>
-
-	<div class = "rows" style = "min-height:500px;"> 
-		<div class = "container-fluid">
-			<table class = "table table-striped">
-				<thead>
-					<tr>
-						<th> User </th>
-						<th> Codeforces rating </th>
-						<th> Topcoder rating </th>
-						<th> User rating </th>
-					</tr>
-				</thead>
-				<tbody id = "user_list">
-					
-				</tbody>
-			</table>
-		</div>
+	
+	<div class = "container-fluid" style = "min-height: 500px;">
+		<p id = 'demo'></p>
+		<input type = "file" id = "rank_list" />
+		<br>
+		<button class = "mdl-button mdl-js-button mdl-button--raised" type = "button" id = "update_rating"> Update Rating </button>
 	</div>
-
+	
 	<footer class="footer container-fluid bg-4 text-center">
   		<div class = "col-md-4">
   			&copy; COMPETITIVE CODING WING <br> 
@@ -86,4 +75,5 @@
   		</div>
 	</footer>
 </body>
+	
 </html>
